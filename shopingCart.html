@@ -24,8 +24,9 @@
                     <p>{{item.name}}</p>
                 </div>
                 <div>
-                    <select :class="{ 'displayN': !item.size, 'selectline' : !item.size  }" v-html="item.size"  v-model="item.selected">
-                       
+                    <select :class="{ 'displayN': !item.size  }" v-html="item.size"  v-model="item.selected">
+
+
                     </select>
                  
                 
@@ -84,11 +85,12 @@
                         count: 1,
                         price: 300,
                         size: 
-                            `        <option disabled value="">請選擇</option> 
+                            `      
+                                    <option  value=''>請選擇</option> 
                                      <option  value=1>20x20x22-cm</option> 
                                      <option  value=2>40x40x22-cm</option>     
                              `, 
-                            //  
+                            //   <option value="">請選擇</option> 
                         selected: '',
                         subtotal:'',
                             
@@ -126,16 +128,18 @@
                         name:"可頌",
                         count: 1,
                         price: 150,
+                        size:'',
                         
-                        size: 
-                            `        
-                            <option disabled value="">請選擇</option> 
-                                     <option  value=1>3入組</option> 
-                                     <option  value=1.8>6入組</option>     
-                             `, 
+                        // size: 
+                        //     `        
+                        //     <option  value=''>選擇</option> 
+                        //     <option  value=1>3入組</option> 
+                        //     <option  value=1.8>6入組</option>     
+                        //      `, 
+
                         subtotal:'',
 
-                        // selected: '' 
+                        // selected: ''   <option value="">請選擇</option> 
                     }
 
                     ]          
@@ -144,7 +148,7 @@
             },
            methods: {
                 subtotal(item) {
-                    if (item.size != '') 
+                    if (item.size  ) 
                     {
                     return item.count * item.price*item.selected;
                   }else{
@@ -159,7 +163,7 @@
                     let allsum=0;
                     for(let i=0;i<this.shoppingItemsCount;i++){
                         let item = this.shoppingProducts[i];
-                        if (item.size != '') 
+                        if (item.size ) 
                         {
                             allsum += item.count * item.price*item.selected;
                         }else{
